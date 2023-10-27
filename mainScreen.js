@@ -26,6 +26,12 @@ const MainScreen = () => {
     }
   };
 
+  function toTitleCase(text) {
+    return text.replace(/\w\S*/g, function (word) {
+      return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+    });
+  }
+
   return (
     <View>
       <TextInput
@@ -39,14 +45,14 @@ const MainScreen = () => {
         <View>
           <View>
             <Image
-              source={{ uri: pokemonData.sprites.front_default }}
-              style={{ width: 150, height: 150 }}
+              source={{ uri: pokemonData.sprites.other['official-artwork'].front_default }}
+              style={{ width: 300, height: 300 }}
             />
           </View>
 
           <View>
-            <Text>Name: {pokemonData.name}</Text>
-            <Text>Height: {pokemonData.height}</Text>
+            <Text>Name: {toTitleCase(pokemonData.name)}</Text>
+            <Text>Type: {toTitleCase(pokemonData.types[0].type.name)}</Text>
             <Text>Weight: {pokemonData.weight}</Text>
             {/* Add more details as needed */}
           </View>
